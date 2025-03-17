@@ -102,7 +102,7 @@ window.onload = function(e) {
         E_refreshGame()
     }
 
-    fetch("/data.json").then(res => {
+    fetch("data.json").then(res => {
         res.json().then(json => {
             gTable = json
             console.log("loaded table!")
