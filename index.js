@@ -28,6 +28,9 @@ let gFlashText
 /** @type{HTMLElement} */
 let gGameContainer
 
+/** @type{HTMLElement} */
+let gHintBox
+
 /** @type{{
     symbol: string,
     name: string,
@@ -78,6 +81,7 @@ window.onload = function(e) {
     gSkipBtn = document.querySelector(".skip-btn")
     gFlashText = document.querySelector(".flash-text")
     gGameContainer = document.querySelector(".game-container")
+    gHintBox = document.querySelector(".hint-box")
 
     gHintButton.onclick = function() {
         if(confirm("Are you sure you want a hint?")) {
@@ -201,7 +205,14 @@ function E_flashText(str, seconds) {
 /** Called when the player finishes all elements */
 function E_handleWin() {
     console.log("player win!")
+
+    // clear status text
     gFlashText.innerText = ""
-    gGameContainer.style.display = "none"
-    gScoreText.innerText = "YOU WIN!"
+    gScoreText.innerText = ""
+    gRemainText.innerText = ""
+    
+
+    // display win message
+    gGameContainer.removeChild(gHintBox) 
+    gElementBox.innerText = "WIN!"
 }
