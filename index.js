@@ -25,6 +25,9 @@ let gSkipBtn
 /** @type{HTMLHeadingElement} */
 let gFlashText
 
+/** @type{HTMLElement} */
+let gGameContainer
+
 /** @type{{
     symbol: string,
     name: string,
@@ -74,6 +77,7 @@ window.onload = function(e) {
     gRemainText = document.querySelector(".remain-text")
     gSkipBtn = document.querySelector(".skip-btn")
     gFlashText = document.querySelector(".flash-text")
+    gGameContainer = document.querySelector(".game-container")
 
     gHintButton.onclick = function() {
         if(confirm("Are you sure you want a hint?")) {
@@ -122,7 +126,7 @@ function E_refreshGame() {
     console.log("refreshing!")
 
     if(gTable.length < 1) {
-        E_flashText("You win!", 10)
+        E_handleWin()
         return
     }
 
@@ -192,4 +196,12 @@ function E_flashText(str, seconds) {
     setTimeout(() => {
         gFlashText.innerText = ""
     }, seconds * 1000)
+}
+
+/** Called when the player finishes all elements */
+function E_handleWin() {
+    console.log("player win!")
+    gFlashText.innerText = ""
+    gGameContainer.style.display = "none"
+    gScoreText.innerText = "YOU WIN!"
 }
